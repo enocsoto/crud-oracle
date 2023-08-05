@@ -37,7 +37,7 @@ export class UserService {
       });
       return user;
     } catch (error) {
-      throw new NotFoundException(` Estudent with ID ${id} not found `);
+      throw new NotFoundException(` User with ID ${id} not found `);
     }
   }
 
