@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  oracle19:
+    image: oracle/database:19.3.0-se2
+    restart: always
+    ports:
+      - 1521:1521
+      - 5500:5500
+    environment:
+      - ORACLE_PWD=contrasena
+    volumes:
+       - ./home/oracle/oradata:/opt/oracle/oradata 
+# docker run -d --name oracle19 \
+# -p 1521:1521 -p 5500:5500 \
+# -e ORACLE_PWD=contrasena \
+# oracle/database:19.3.0-se2
