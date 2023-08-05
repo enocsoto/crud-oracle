@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -17,7 +17,7 @@ export class UserService {
       await this.userRepository.save(user);
       return user;
     } catch (error) {
-      throw new BadRequestException(` Error creating the User ` + error);
+      this.handleExceptions(error);
     }
   }
 
@@ -58,5 +58,13 @@ export class UserService {
     } catch (error) {
       throw new NotFoundException(` User whit id ${id} not found `);
     }
+  }
+
+  private handleExceptions(error: any) {
+    if (error.code === 'ORA-00001')
+      throw new BadRequestException(`User whit email exists in bd ${JSON.stringify(error.code)}`);
+    
+    console.log(error);
+    throw new InternalServerErrorException(`Can't create User - Chek server Logs`)
   }
 }

@@ -9,14 +9,13 @@ export class User {
 
   @Column()
   lastName: string;
-  @Column()
-  password: string;
-
 
   @Column()
   age: number;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   email: string;
 
   @CreateDateColumn({

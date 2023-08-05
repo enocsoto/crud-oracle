@@ -25,6 +25,12 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+
+## Generar migrations 
+
+```bash
+ npm run m:gen -- ./migrations/init
+```
 ## Test
 
 ```bash
