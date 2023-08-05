@@ -20,7 +20,11 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
-    }),
+      transformOptions: {
+        enableImplicitConversion: true
+      }
+    },
+    ),
   );
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
