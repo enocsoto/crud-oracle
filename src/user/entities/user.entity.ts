@@ -1,12 +1,17 @@
-import { BaseEntity } from 'src/common/config/base.entity';
-import { BeforeInsert, BeforeUpdate, Column, Entity } from 'typeorm';
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 @Entity()
-export class User extends BaseEntity {
+export class User {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+  
   @Column()
   firstName: string;
 
   @Column()
   lastName: string;
+  @Column()
+  password: string;
+
 
   @Column()
   age: number;
@@ -14,6 +19,17 @@ export class User extends BaseEntity {
   @Column()
   email: string;
 
+  @CreateDateColumn({
+    type: 'timestamp',
+    name: 'created_at',
+  })
+  createdat: Date;
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+    name: 'updated_at',
+  })
+  updatedat: Date;
   @BeforeInsert()
   checkFiledsBeforeInsert() {
     this.email = this.email.toLocaleLowerCase().trim();

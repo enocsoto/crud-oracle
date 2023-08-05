@@ -16,7 +16,7 @@ export const dataSourceOptions: DataSourceOptions = {
   sid: configService.get('DB_NAME'),
   //database: configService.get('DB_NAME'),
   entities: [__dirname + '/../../**/**/*.entity{.ts,.js}'],
-  migrations: [__dirname + '/../../../migrations/*{.ts,.js}'],
+  migrations: [__dirname + '/../../migrations/*{.ts,.js}'],
   synchronize: false,
 };
 // console.log(
@@ -26,5 +26,6 @@ export const dataSourceOptions: DataSourceOptions = {
 //   dataSourceOptions.password,
 //   dataSourceOptions.database
 //   );
+
 
 export const dataSource = new DataSource(dataSourceOptions);
